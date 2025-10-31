@@ -11,17 +11,17 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"; // Import Select components
+} from "@/components/ui/select";
 
 const zones = [
-  { id: 'zone-a', name: 'Zone Alpha' },
-  { id: 'zone-b', name: 'Zone Beta' },
-  { id: 'zone-c', name: 'Zone Gamma' },
+  { id: 'zone-a', name: 'Zone Alpha', color: 'bg-blue-200' },
+  { id: 'zone-b', name: 'Zone Beta', color: 'bg-green-200' },
+  { id: 'zone-c', name: 'Zone Gamma', color: 'bg-purple-200' },
 ];
 
 const ZoneMap = () => {
   const { language } = useLanguage();
-  const [selectedZoneId, setSelectedZoneId] = useState(zones[0].id); // Default to the first zone
+  const [selectedZoneId, setSelectedZoneId] = useState(zones[0].id);
 
   const containerVariants = {
     hidden: { opacity: 0, scale: 0.9 },
@@ -36,6 +36,9 @@ const ZoneMap = () => {
       showSuccess(`No zone selected for exploration!`);
     }
   };
+
+  const currentZone = zones.find(zone => zone.id === selectedZoneId);
+  const exploreAreaColorClass = currentZone ? currentZone.color : 'bg-gray-200'; // Fallback color
 
   return (
     <motion.div
@@ -71,12 +74,12 @@ const ZoneMap = () => {
           </div>
 
           <motion.div
-            className="w-full h-48 bg-blue-100 rounded-md flex items-center justify-center text-blue-600 font-semibold cursor-pointer"
+            className={`w-full h-48 rounded-md flex items-center justify-center text-blue-800 font-semibold cursor-pointer transition-colors duration-300 ${exploreAreaColorClass}`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleExploreClick}
           >
-            Explore {zones.find(zone => zone.id === selectedZoneId)?.name || 'Selected Zone'}!
+            Explore {currentZone?.name || 'Selected Zone'}!
           </motion.div>
           <p className="mt-4 text-sm text-gray-500">
             Current language: {language}
