@@ -1,12 +1,18 @@
-import RitualSpace from "@/components/RitualSpace";
-import LanguageSwitcher from "@/components/LanguageSwitcher"; // Ensure LanguageSwitcher is imported if not already
+// Update this page (the content is just a fallback if you fail to update the page)
+
+import { MadeWithDyad } from "@/components/made-with-dyad";
 
 const Index = () => {
   return (
-    <>
-      <RitualSpace />
-      {/* LanguageSwitcher is already included within RitualSpace, but keeping this here for clarity if it were standalone */}
-    </>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
+        <p className="text-xl text-gray-600">
+          Start building your amazing project here!
+        </p>
+      </div>
+      <MadeWithDyad />
+    </div>
   );
 };
 
